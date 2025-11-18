@@ -3,38 +3,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 
-class Post {
-    public static function all(){
-        return [
-            [   'id' => 1,
-                'slug' => 'judul-artikel-1',
-                'title' => 'Judul Artikel 1',
-                'author' => 'Sandhika Galih',
-                'body' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur est nemo, fugit minus rem cum.'
-            ],
-            [
-                'id' => 2,
-                'slug' => 'judul-artikel-2',
-                'title' => 'Judul Artikel 2',
-                'author' => 'Sandhika Galih',
-                'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque fuga, illo voluptate excepturi nulla exercitationem?'
-            ]
-        ];
-    }
+class Post extends Model {
 
-    public static function find($slug){
+    // pake $table kalo nama tablenya itu beda sama nama kelasnya (misal kelas Post nama tablenya blog_posts)
+    // protected $table = 'blog_posts';
 
-        $post = Arr::first(static::all(), fn ($post) => $post['slug'] == $slug);
-        
-        if(!$post){
-            abort(404);
-        }
+    // pale $primaryKey kalo primary keynya bukan id (misal posts_id)
+    // protected $primaryKey = 'post_id';
 
-        return $post;
-    }
+    //
+    
+    protected $fillable = ['title', 'author', 'slug', 'body'];
+
 }
 
 
